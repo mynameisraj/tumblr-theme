@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{Title}{block:PostTitle} - {PostTitle}{/block:PostTitle}</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="image:Background">
+  <meta name="image:Header" content="">
+  <meta name="color:Background" content="hsl(30,18%,70%)">
+  <meta name="color:Links" content="hsl(90,46%,48%)">
+  <meta name="text:Author Name" content="">
+  <meta name="text:Typekit String" content="">
+  <meta name="text:Mint URL" content="">
+  
+  {block:IfAuthorName}
+    <meta name="author" content="{text:Author Name}">
+  {/block:IfAuthorName}
+  {block:Description}
+    <meta name="description" content="{MetaDescription}">
+  {/block:Description}
+  
+  <link rel="stylesheet" href="https://raw.github.com/necolas/normalize.css/master/normalize.css">
+  <style type="text/css">
+    @media screen and (max-width: 520px) {
+      div.container {
+        width: 300px;
+      }
+    }
+    
+    .clear {
+      clear: both;
+    }
+    
+    a, .link h2 a {
+      color: {color:Links};
+    }
+    
+    a:hover {
+      color: #777;
+    }
+    
+    body {
+      background: {color:Background} url('{image:Background}');
+      color: #333;
+      font: 14px/1.5  "ff-tisa-web-pro", Lucida Grande, Georgia, serif;
+            margin: 0;
+    }
+    
+    .container {
+      margin: -50px auto 50px;
+      width: 500px;
+    }
+    
+    article {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      overflow: hidden;
+      margin-bottom: 30px;
+    }
+    
+    article header h2, article header h3 {
+      margin: 0;
+    }
+    
+    .body {
+      padding: 30px 30px 0;
+    }
+    
+    .main a {
+        color: #fff;
+      text-decoration: none;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    
+    .header-image {
+      background-size: cover;
+      box-shadow:
+        0 1px 2px rgba(0,0,0,0.2);
+      border: 5px solid #fff;
+      border-radius: 100%;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 15px;
+    }
+        
+        .main {
+            background-color: #224e92;
+      padding: 40px 0;
+    }
+    
+    .main a:hover .header-image {
+      box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 1px 2px rgba(0,0,0,0.35);
+    }
+    
+    .main a:active .header-image {
+      box-shadow:
+        inset 0 1px 2px rgba(0, 0, 0, 0.35),
+        0 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .main h1 {
+      font-family: "adelle", Helvetica Neue, Georgia, serif;
+      font-size: 2em;
+      margin-bottom: 1.8em;
+      margin-top: 0;
+      text-align: center;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+        
+        .body img {
+            display: block;
+            max-width: 100%;
+        }
+    
+    h2 {
+      font-family: "adelle", Helvetica Neue, Georgia, serif;
+    }
+    
+    h2 a {
+      color: #000;
+      text-decoration: none;
+    }
+    
+    .meta {
+      border-top: 1px solid #eee;
+      font-size: .8em;
+      margin: 25px 30px 0;
+      padding: 24px 0 30px;
+    }
+    
+    .meta a {
+      color: #bbb;
+      text-decoration: none;
+    }
+    
+    .photo-wrap img, .video-wrap iframe {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+        
+        .text img {
+            margin-bottom: 25px;
+        }
+    
+    .quote-header {
+      padding: 30px 30px 10px;
+    }
+    
+    .quote-header h2 {
+      margin-bottom: 10px;
+    }
+    
+    .quote .meta {
+      margin: 15px 30px 0;
+    }
+    
+    .photo .body, .video .body {
+      padding-top: 15px;
+    }
+    
+    .source {
+      font-size: 1em;
+      font-weight: normal;
+      line-height: 1;
+    }
+    
+    .origin {
+      font-style: italic;
+    }
+    
+    footer {
+      margin-top: 40px;
+    }
+    
+    footer a {
+      color: rgba(0,0,0,0.6);
+      text-decoration: none;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+    }
+    
+    footer a:hover {
+      color: rgba(0,0,0,0.75);
+    }
+    
+    .older {
+      float: left;
+    }
+    
+    .newer {
+      float: right;
+    }
+    
+    {CustomCSS}
+  </style>
+  
+  {block:IfMintURL}
+  <script src="{text:Mint URL}"></script>
+  {/block:IfMintURL}
+  
+  {block:IfTypekitString}
+    <script src="{text:Typekit String}"></script>
+    <script>try{Typekit.load();}catch(e){}</script>
+  {/block:IfTypekitString}
+</head>
+
+<body>
+  <header class="main">
+    <a href="/">
+      {block:IfHeaderImage}
+        <div class="header-image" style="background-image:url({image:Header});"></div>
+      {/block:IfHeaderImage}
+      <h1>{Title}</h1>
+    </a>
+  </header>
+  <div class="container">
+    {block:Posts}
+      {block:Text}
+        <article class="text">
+          <section class="body">
+            {block:Title}
+              <header>
+                <h2>{Title}</h2>
+              </header>
+            {/block:Title}
+            
+            {Body}
+          </section>
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Text}
+      
+      {block:Photo}
+        <article class="photo">
+          <section class="photo-wrap">
+            {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
+          </section>
+          {block:Caption}
+            <section class="body">
+              {Caption}
+            </section>
+          {/block:Caption}
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Photo}
+      
+      {block:Photoset}
+        <article class="photo">
+          <section class="photo-wrap">
+            {Photoset-500}
+          </section>
+          {block:Caption}
+            <section class="body">
+              {Caption}
+            </section>
+          {/block:Caption}
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Photoset}
+      
+      {block:Video}
+        <article class="video">
+          <section class="video-wrap">
+            {Video-500}
+          </section>
+          {block:Caption}
+            <section class="body">
+              {Caption}
+            </section>
+          {/block:Caption}
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Video}
+      
+        
+      {block:Quote}
+        <article class="quote">
+          <section class="quote-header">
+            <header>
+              <h2>&ldquo;<span class="quote-text">{Quote}</span>&rdquo;</h2>
+              {block:Source}
+                <h3 class="source">&mdash;<span class="origin">{Source}</span></h3>
+              {/block:Source}
+            </header>
+          </section>
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Quote}
+      
+      {block:Link}
+        <article class="link">
+          <section class="body">
+            <header>
+              <h2><a href="{URL}" class="link-a">{Name} &rarr;</a></h2>
+            </header>
+            {block:Description}
+              {Description}
+            {/block:Description}
+          </section>
+          {block:Date}
+            <section class="meta">
+              <a href="{Permalink}"><time datetime="{DayOfMonthWithZero}/{MonthNumberWithZero}/{Year}" pubdate>{DayOfWeek} {Month} {DayOfMonth}{DayOfMonthSuffix}, {Year}</time></a>
+            </section>
+          {/block:Date}
+        </article>
+      {/block:Link}
+    {/block:Posts}
+    {block:Pagination}
+      <footer>
+        {block:NextPage}
+          <a href="{NextPage}" class="older">&larr; Older</a>
+        {/block:NextPage}
+        {block:PreviousPage}
+          <a href="{PreviousPage}" class="newer"> Newer &rarr;</a>
+        {/block:PreviousPage}
+        <div class="clear"></div>
+      </footer>
+    {/block:Pagination}
+  </div>
+</body>
+
+</html>
